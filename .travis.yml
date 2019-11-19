@@ -20,7 +20,7 @@ after_success:
     linux) export TARGET=linux ;;
     *)     exit 1 ;;
   esac
-- cp /build/bin/libui/releaseExecutable/hello-libui.kexe demo-${TARGET}.kexe
+- cp build/bin/libui/releaseExecutable/hello-libui.kexe demo-${TARGET}.kexe
 deploy:
 - provider: releases
   user: wuseal
