@@ -1,37 +1,36 @@
 language: java
-
 matrix:
   include:
-    - os: linux
-      dist: bionic
-      jdk: oraclejdk11
-      addons:
-        apt:
-          packages:
-            - libgtk-3-dev
-    - os: osx
-      osx_image: xcode11
-      jdk: oraclejdk11
-
+  - os: linux
+    dist: bionic
+    jdk: oraclejdk11
+    addons:
+      apt:
+        packages:
+        - libgtk-3-dev
+  - os: osx
+    osx_image: xcode11
+    jdk: oraclejdk11
 script:
-  - ./gradlew build
-
+- "./gradlew build"
 after_success:
-  - |
-    case "${TRAVIS_OS_NAME}" in
-      osx)   export TARGET=macosx ;;
-      linux) export TARGET=linux ;;
-      *)     exit 1 ;;
-    esac
-  - cp /build/bin/libui/releaseExecutable/hello-libui.kexe demo-${TARGET}.kexe
-  
+- |
+  case "${TRAVIS_OS_NAME}" in
+    osx)   export TARGET=macosx ;;
+    linux) export TARGET=linux ;;
+    *)     exit 1 ;;
+  esac
+- cp /build/bin/libui/releaseExecutable/hello-libui.kexe demo-${TARGET}.kexe
 deploy:
 - provider: releases
-  api_key:
-    secure: KEPHCjDrXTBOXmCJdCEItv9axsUr6PmjkGLKevXnf5rjbfTdT0ZQkNjjKZnCk18AfKCMKp7KvWkWoVfVZJE5P+dCJ+HWXdMOpUUeQA5ARiE21e+/L3+92k8fRsiyP80GFDqevwk7vdFEo4/pCUq/lGA8fZfWSxm6vRaARf/sMu0OmSU0A6XP25hn/vAJlreURT5bFGukPR4tfcnXWxFM9F8/IDqjX0vo+Q/WxwxTljE/WFMZgZs33C3QbRScKrlHgD9CnwvViuzTAMWXwYsXiMeklXG2Z6M7P9FuRrfZlYEOcQq/VkkpYw3rO/sympwYBppD78Sz7/iLNSAgaRW/3YGiFbssfYz2baf99Xv9uSdwynj+1ci7aCh3Oqy8vUShe2NVzEDsdYEJpu2iRQQmyMkzjvOCkUwntPQ8SChCjGnwsXtuBscY97VS26EVzqyzObmZEGjpiocshM+qo35R7MOEAH65KNG9lBzsulX3BuIt34x9clngXd3t6Hlj9LM66zVUmsALk+gvmYzjZxJYNo03miBypAb+YSHc8dWxLaug3oDrKF/ZxOYRuS4ZUyMTcab+qCiZOVWfV07j6DU6iJe1F/6FDBh/lMYkSCWfCdPqXij1l8UP7A18ej/zh3guhPFVZkMZjne3SGm1pLWfL459fjoTB/qWnqyPrJrpavA=
+  user: wuseal
+  password: fjEQnI1yprXMq+3wb3y62zth8GnJk7WGjt1KokL2/mC5c4ufUczFyRI8G93eNagkkEmvuAIgy80IyJtlFAhnrRGEyNWqxiQEAg6CXu8o9ljlTm5aYtAaEFL8USEsCQMJ1SlM/xRC2M4xHCbA4pvnrfrkTuH/jkzoF74JrA9Z0PNGFUnycZELsrl1349Xc7jdIzYeGybVlVimhDpYFc4TAADMJbzGNeds5xhphJOhhqekv2KwZ2gwrzTsUBr1hIRVOX8n4m6DwMNWhoZ8PZVEv7OUylyrGRYQcAk1ivWLjt9hZGhMm3rUTVgT2EfvMSpDt5jA+pjopaWqYobX8vB7S1+W7d3qKnvyMCKFUMtqQCcL68j2rnuqnmmr2JhCOVUE3EhutfGon9P6YJCMAsp6M6fvBTZNEKPzd0X8Edkfj4KVT2ZreVgqjMaEtN7fNfl2Jsrg/plAvSXCQ5uscW+Qy2Q0F4dtbhChUbCnPjWoV8YzTxckfbqaK6EFGSNUYhagVbIsmc5CaYVDNW8z8H6cFBjwcjeyOBDPite5qeqtAN/glemNzS2gVlW/ORqexyUjvVdFih1QfcV7hKasK8HBwmDww5SABTm/ijIt5NslZB6WoKQZzgifXHTkKDEqGWde8boN25CUlYgl2uAHxObZbIISwThT1xgzRM/trirg3eg=
   file_glob: true
   file: demo-*.kexe
   skip_cleanup: true
   on:
     tags: true
     repo: wuseal/hello-libui
+env:
+  global:
+    secure: fjEQnI1yprXMq+3wb3y62zth8GnJk7WGjt1KokL2/mC5c4ufUczFyRI8G93eNagkkEmvuAIgy80IyJtlFAhnrRGEyNWqxiQEAg6CXu8o9ljlTm5aYtAaEFL8USEsCQMJ1SlM/xRC2M4xHCbA4pvnrfrkTuH/jkzoF74JrA9Z0PNGFUnycZELsrl1349Xc7jdIzYeGybVlVimhDpYFc4TAADMJbzGNeds5xhphJOhhqekv2KwZ2gwrzTsUBr1hIRVOX8n4m6DwMNWhoZ8PZVEv7OUylyrGRYQcAk1ivWLjt9hZGhMm3rUTVgT2EfvMSpDt5jA+pjopaWqYobX8vB7S1+W7d3qKnvyMCKFUMtqQCcL68j2rnuqnmmr2JhCOVUE3EhutfGon9P6YJCMAsp6M6fvBTZNEKPzd0X8Edkfj4KVT2ZreVgqjMaEtN7fNfl2Jsrg/plAvSXCQ5uscW+Qy2Q0F4dtbhChUbCnPjWoV8YzTxckfbqaK6EFGSNUYhagVbIsmc5CaYVDNW8z8H6cFBjwcjeyOBDPite5qeqtAN/glemNzS2gVlW/ORqexyUjvVdFih1QfcV7hKasK8HBwmDww5SABTm/ijIt5NslZB6WoKQZzgifXHTkKDEqGWde8boN25CUlYgl2uAHxObZbIISwThT1xgzRM/trirg3eg=
