@@ -23,6 +23,7 @@ after_success:
   - cp build/bin/libui/releaseExecutable/hello-libui.kexe demo-${TARGET}.kexe
 deploy:
   - provider: releases
+    edge: true
     api_key:
       secure: lcpHd/0c+CvO4u2kQnpRo42WKfymTtzOK5FaAHNxXDovoJHPd7cMv0gPXkBxQAQMGUyUu7UttnhSRECWRDYaJ2WIal9VJzfNwrXAdFXsWWWblUaJBoiDwtKZgw4VkA/pvS0WA+xZmzE3YKjjHICULuKzn82EP787Uc33qHbBZ4RfD586Kpv7+A1wZa1PHe7wyY2vC0DRyoolT6CyWdAYlKF4DrVfHisZFzVfuRuzNtvKUbTVLFq0bMLOvnAcor+eUp5yxyXUEra3pQmfYEUEl8IthTYgZvvccPKFMRJ7ziuoslAr1X8qPX7NkEA24xTnCAW2ANWy7cOcXH8Sd1BQWzoIPkZnR/PRu51nXCZOXqF53wdFnRd0XNq40BAYapHJzfqSQ88j64+q3KelwxX9jHMjYENO3WjskLrjBGlcjQuyHfhQ8vsBdUluim1hpcyr0ypE6GyBlcELwWglbEoXVvqZxC9IUoutZDiSIuQLocpNKHxYKJMCgZX/ur3jJP0x2HT8J6trh3w1qzKIMHbZiXo+IfPyhWYgcHbP9zUl2t+9jY7ffjE2EgwqTOh+2Nw3VCPONmdWPrqYSmASAEP1+6AGwH0zNiJjdnZIUMQ6KtoEHv2fkWeNESdH4qx6H4rjWsfXLdAGaQmPLLH/LKAZw8Vu5fUe8ODqMiIiZ6NxMHE=
     file: demo-*.kexe
