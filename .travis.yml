@@ -17,14 +17,6 @@ script:
   - ./gradlew build
 
 after_success:
-  - |
-    if [[ "x${TRAVIS_TAG}" != "x" ]]
-    then
-      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-native -PVERSION_SUFFIX publish
-    else
-      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-dev -PVERSION_SUFFIX=-dev publish
-    fi
-  - |
     case "${TRAVIS_OS_NAME}" in
       osx)   export TARGET=macosx ;;
       linux) export TARGET=linux ;;
