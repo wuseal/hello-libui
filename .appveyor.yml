@@ -2,3 +2,18 @@ version: 'build #{build}'
 
 build_script:
   - gradlew build
+
+after_build:
+  - cp build\bin\libui\releaseExecutable\hello-libui.exe demo-windows.exe
+
+artifacts:
+  - path: demo-windows.exe
+    name: demo
+
+deploy:
+  provider: GitHub
+  artifact: interop, library, samples
+  auth_token:
+    secure: "k4OiaJkstEkGjKueq6mOC8nzBMDMT6EjXj8t2hV5hLDy5q/EZsMb+JKORq+MocRn"
+  on:
+    appveyor_repo_tag: true
