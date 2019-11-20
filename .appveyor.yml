@@ -12,7 +12,7 @@ artifacts:
 
 deploy:
   provider: GitHub
-  artifact: interop, library, samples
+  artifact: demo
   auth_token:
     secure: "k4OiaJkstEkGjKueq6mOC8nzBMDMT6EjXj8t2hV5hLDy5q/EZsMb+JKORq+MocRn"
   on:
