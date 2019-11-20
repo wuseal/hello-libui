@@ -9,7 +9,6 @@ after_build:
 artifacts:
   - path: demo-windows.exe
     name: demo
-
 deploy:
   provider: GitHub
   artifact: demo
