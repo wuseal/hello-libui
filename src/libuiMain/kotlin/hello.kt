@@ -1,7 +1,7 @@
 import libui.ktx.*
 
 fun main() = appWindow(
-    title = "Hello",
+    title = "Hello，Seal",
     width = 320,
     height = 240
 ) {
